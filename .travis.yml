@@ -10,8 +10,8 @@ jobs:
   include:
     - stage: test
       name: "Jest tests"
-      script: "echo 'Running test 1...'"
+      script: "echo 'Running test 1...' && exit 1"
       script: "echo 'Running test 2...'"
     - stage: deploy
       name: "Deploy to somewhere"
-      script: "echo 'Deploying...'"
+      script: "echo 'Deploying...' && exit 1"

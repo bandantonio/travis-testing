@@ -15,9 +15,11 @@ jobs:
       deploy:
         - provider: script
           script: "echo 'Generating docs'"
+          script: npm i
           script: npm run jsdoc
           on:
             branch: master
+          skip_cleanup: true  
         - provider: pages
           skip_cleanup: true
           github_token: $GITHUB_TOKEN

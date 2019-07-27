@@ -18,13 +18,13 @@ jobs:
     - stage: deploy
       name: "Deploy to github pages"
       script: "echo 'Deploying...'"
-after_success:
-  deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: $tkn-for-gh-pages
-    local_dir: ./docs
-    committer_from_gh: true
-    keep_history: true
-    on:
-      branch: master
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $tkn-for-gh-pages
+        local_dir: ./docs
+        committer_from_gh: true
+        keep_history: true
+        on:
+          branch: master
+      script: "echo 'Finished deploying...'"

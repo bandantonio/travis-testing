@@ -10,8 +10,22 @@ jobs:
   include:
     - stage: test
       name: "Jest tests"
-      script: "echo 'Running test 1...'" && exit 1
+      script: "echo 'Running test 1...'"
+      script: exit 1
       script: "echo 'Running test 2...'"
+    - stage: "Build docs"
+      script: npm run jsdoc
     - stage: deploy
-      name: "Deploy to somewhere"
-      script: "echo 'Deploying...'" && exit 1
+      name: "Deploy to github pages"
+      script: "echo 'Deploying...'"
+      script: exit 1
+after_success:
+  deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $tkn-for-gh-pages
+    local_dir: ./docs
+    committer_from_gh: true
+    keep_history: true
+    on:
+      branch: master

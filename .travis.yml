@@ -13,7 +13,8 @@ jobs:
       script: "echo 'Running test 1...'"
       script: exit 1
       script: "echo 'Running test 2...'"
-    - stage: "Build docs"
+    - stage: test
+      name: "Build docs"
       script: npm run jsdoc
     - stage: deploy
       name: "Deploy to github pages"

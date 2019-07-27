@@ -18,7 +18,6 @@ jobs:
     - stage: deploy
       name: "Deploy to github pages"
       script: "echo 'Deploying...'"
-      script: exit 1
 after_success:
   deploy:
     provider: pages

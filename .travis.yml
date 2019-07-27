@@ -22,7 +22,7 @@ jobs:
       deploy:
         provider: pages
         skip_cleanup: true
-        github_token: $tkn-for-gh-pages
+        github_token: $GITHUB_TOKEN
         local_dir: ./docs
         committer_from_gh: true
         keep_history: true

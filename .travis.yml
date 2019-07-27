@@ -1,8 +1,6 @@
 language: node_js
 node_js:
   - stable
-install:
-  - npm install
 stages:
   - test
   - deploy  
@@ -13,19 +11,18 @@ jobs:
       script: "echo 'Running test 1...'"
       script: exit 1
       script: "echo 'Running test 2...'"
-    - stage: test
-      name: "Build docs"
-      script: npm run jsdoc
     - stage: deploy
-      name: "Deploy to github pages"
-      script: "echo 'Deploying...'"
       deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        local_dir: ./docs
-        committer_from_gh: true
-        keep_history: true
-        on:
-          branch: master
-      script: "echo 'Finished deploying...'"
+        - provider: script
+          script: "echo 'Generating docs'"
+          script: npm run jsdoc
+          on:
+            branch: master
+        - provider: pages
+          skip_cleanup: true
+          github_token: $GITHUB_TOKEN
+          local_dir: ./docs
+          committer_from_gh: true
+          keep_history: true
+          on:
+            branch: master
